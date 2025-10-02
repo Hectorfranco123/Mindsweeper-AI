@@ -1,30 +1,39 @@
-import pyautogui
 import tkinter as tk
+from tkinter import simpledialog
 
-def button_one_thing():
-    print("YOU DID A THING")
-
-def button_two_thing():
-    print("YOU DID ANOTHER THING")
-
-def screenshot_test():
-    screenshot = pyautogui.screenshot(region=(490,690,946,844)) # left, top, width, and height of ss
-    screenshot.save("board.png")
 
 root = tk.Tk()
+root.title("minesweeper")
 
-root.title("Screenshot Selection Menu")
-root.geometry("1000x1000")
+#ask user for size
+size = simpledialog.askinteger("Board size","Enter Number: ")
+#if user just doesnt for some reason 
+if size is None:
+    size = 10
 
-button_one = tk.Button(root, text="button",command= button_one_thing)
-button_one.pack(pady=5)
+#board size 
+rows = cols = size 
 
-button_two = tk.Button(root, text="button 2",command= button_two_thing)
-button_two.pack(pady=5)
+buttons = {}
+#TODO create a 2d list of buttons to store the game, named board 
 
-button_three = tk.Button(root, text="ScreenShot Cords", command=screenshot_test)
-button_three.pack(pady=12,padx=19)
+#TODO create function to place mines randompomy on the board
+
+
+#TODO make it so a left click and right click do different things
+def on_click(row, col):
+    button = buttons[(row,col)]
+    button.config(bg="red")
+    print("Button ", row,",",col," pressed")
+
+
+for r in range(rows): #making the buttons grid
+    for c in range(cols):
+        button = tk.Button(root,width=3, height=1, font=("Arial", 10, "bold"), command=lambda row=r, col=c: on_click(row,col)) #claude gave me the lamba command so the buttom can remember its position
+        button.grid(row=r,column=c,padx=1,pady=1)
+        #using button as a dict to store key using the row and colloum
+        buttons[(r,c)] = button
+
+
 root.mainloop()
-
-
 
