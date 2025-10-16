@@ -1,4 +1,4 @@
-#installed pyautogui - pip install pyautogui
+reequired ppackeed 
 
 
 
