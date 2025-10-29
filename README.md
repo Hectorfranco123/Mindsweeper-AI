@@ -45,6 +45,14 @@ This application provides a classic Minesweeper gaming experience with an AI sol
 ```bash
    python --version
 ```
+3. **Install VENV**
+```bash
+
+   python -m venv name
+   .\name\Scripts\activate
+   pip install -r ./require.txt
+
+```
 
 ### Running the Game
 
